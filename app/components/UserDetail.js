@@ -9,15 +9,16 @@ export default function UserDetail({ userId }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (userId == null) {
-      return;
-    }
-    setLoading(true);
-    getPostsByUser(userId).then((data) => {
-      setPosts(data);
-      setLoading(false);
-    });
-  }, [userId, posts]);
+  if (userId == null) {
+    return;
+  }
+  
+  setLoading(true);
+  getPostsByUser(userId).then((data) => {
+    setPosts(data);
+    setLoading(false);
+  });
+}, [userId]); 
 
   if (userId == null) {
     return <p className={styles.placeholder}>Select a user to see their posts.</p>;
